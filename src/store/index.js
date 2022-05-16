@@ -1,14 +1,12 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import spaStore from './spaStore';
+import foodStore from './foodStore';
+import cabinStore from './cabinStore';
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
-  }
-})
+    cabin: cabinStore,
+    spa: spaStore,
+    food: foodStore,
+  },
+});
