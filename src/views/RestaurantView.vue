@@ -5,9 +5,11 @@
         <div>
           <h1 class="text-h3 font-weight-bold">RESTAURANG DELUX</h1>
           <h3 class="text-h6 font-weight-bold font-italic">Med inspiration från hela världen</h3>
+          <router-link to="/food" class="text-white">
+            <h4 class="font-weight-medium font-italic">Se vår meny</h4>
+          </router-link>
         </div>
       </div>
-
       <v-container fluid>
         <RestaurantForm :style="{ paddingBottom: '3vh' }" />
       </v-container>
@@ -15,18 +17,69 @@
     <v-container fluid>
       <RestaurantCard />
     </v-container>
+
+    <v-snackbar v-model="msgErr" multi-line color="white" absolute right top elevation="24">
+      {{ bookingError }}
+      <template v-slot:actions>
+        <v-btn color="orange" variant="text" @click="closeMsgErr"> Ok </v-btn>
+      </template>
+    </v-snackbar>
+
+    <v-snackbar v-model="msgCart" multi-line color="white" absolute right top elevation="24">
+      En ny bokning har lagts till i din varukorg!
+      <template v-slot:actions>
+        <v-btn color="orange" variant="text" @click="closeMsgAdd"> Ok </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 import RestaurantForm from '../components/RestaurantForm.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Restaurant',
+  data() {
+    return {
+      msgErr: false,
+      msgCart: false,
+    };
+  },
   components: {
     RestaurantForm,
     RestaurantCard,
+  },
+  computed: {
+    ...mapState({
+      bookingError: (state) => state.restaurant.bookingError,
+      bookingCart: (state) => state.restaurant.bookingCart,
+    }),
+  },
+  methods: {
+    closeMsgErr() {
+      this.msgErr = false;
+      this.$store.commit('resetError');
+    },
+    closeMsgAdd() {
+      this.msgCart = false;
+    },
+  },
+  watch: {
+    bookingError(value) {
+      if (value) {
+        this.msgErr = true;
+      }
+    },
+    bookingCart(value, old) {
+      if (value.length > old.length || (value.length === old.length && value !== old)) {
+        this.msgCart = true;
+        setTimeout(() => {
+          this.closeMsgAdd();
+        }, 3000);
+      }
+    },
   },
 };
 </script>

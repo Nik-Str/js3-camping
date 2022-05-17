@@ -54,11 +54,17 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$store.commit('addRestaurantBookingDate', {
+      this.$store.commit('addRestaurantBookingCart', {
         date: this.selectedDate,
         time: this.selectedTime,
         amount: this.selectedAmount,
       });
+      this.selectedDate = null;
+      this.selectedTime = null;
+      this.selectedAmount = null;
+      setTimeout(() => {
+        this.resetForm();
+      }, 10);
     },
     validate() {
       this.$refs.form.validate();
