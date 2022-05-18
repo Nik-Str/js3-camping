@@ -10,17 +10,10 @@
 
   <v-container fluid>
     <ActivitiesCard class="mb-3" :data="activities" />
-    <div class="elevation-1 rounded-lg closeBy mb-4">
-      <div class="closeByOverlayer d-flex justify-center align-center text-center">
-        <h2 class="text-h4 text-white font-weight-bold">NÄRLIGGANDE BADPLATSER</h2>
-      </div>
-    </div>
-    <Maps />
   </v-container>
 </template>
 
 <script>
-import Maps from '../components/Maps.vue';
 import ActivitiesCard from '../components/ActivitiesCard.vue';
 
 export default {
@@ -28,12 +21,51 @@ export default {
   data() {
     return {
       activities: [
-        { title: 'Mat & Dryck', sub: 'Bred variation från väldens alla hörn', img: require('@/assets//food1.jpg') },
+        { title: 'Mat & Dryck', sub: 'Bred variation från väldens alla hörn', img: require('@/assets/food1.jpg') },
+        {
+          title: 'Träning & Hälsa',
+          sub: 'Allt från utegym, joggingspår, paddel, mm',
+          img: require('@/assets/activities_training.jpg'),
+        },
+        {
+          title: 'Spa & Skönhet',
+          sub: 'Välj mellan olika behandlingar',
+          img: require('@/assets/activities_spa.jpg'),
+        },
+        {
+          title: 'Sol & Bad',
+          sub: 'Havet, pool och närliggande sjöar',
+          img: require('@/assets/activities_swimming.jpg'),
+        },
+        {
+          title: 'Lekland & Äventyr',
+          sub: 'Aktiviteter för de mindre',
+          img: require('@/assets/activities_playground.jpg'),
+        },
+        {
+          title: 'Vin & Ölprovning',
+          sub: 'Vidga din vyer och testa något nytt',
+          img: require('@/assets/activities_drinks.jpg'),
+        },
+        {
+          title: 'Kultur & Musik',
+          sub: 'Blandat artister och inspiratörer',
+          img: require('@/assets/activities_music.jpg'),
+        },
+        {
+          title: 'Natur & Friluftsliv',
+          sub: 'Guidade turer och vandringsled',
+          img: require('@/assets/activities_nature.jpg'),
+        },
+        {
+          title: 'Kläder & Shopping',
+          sub: 'Nära till shoppingcenter',
+          img: require('@/assets/activities_shopping.jpg'),
+        },
       ],
     };
   },
   components: {
-    Maps,
     ActivitiesCard,
   },
 };
@@ -57,7 +89,7 @@ export default {
 }
 
 .closeByOverlayer {
-  background-color: rgba(250, 250, 250, 0.503);
+  background-color: rgba(250, 250, 250, 0.903);
   width: 100%;
   height: 100%;
 }

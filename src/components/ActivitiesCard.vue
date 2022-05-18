@@ -9,7 +9,9 @@
       :key="item.title + index"
     >
       <v-card class="mx-auto elevation-1 mt-7" width="360">
-        <v-img :src="item.img" height="240px" cover></v-img>
+        <router-link :to="`/`">
+          <v-img :src="item.img" height="240px" cover></v-img>
+        </router-link>
 
         <v-card-title class="justify-center"> {{ item.title }} </v-card-title>
 
@@ -25,5 +27,3 @@ export default {
   props: ['data'],
 };
 </script>
-
-<style lang="scss" scoped></style>
