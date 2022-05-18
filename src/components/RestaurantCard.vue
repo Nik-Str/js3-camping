@@ -47,7 +47,7 @@
             <v-card-title class="d-flex justify-center"> Allergi eller Intollerans? </v-card-title>
 
             <v-card-subtitle class="d-flex justify-center text-high-emphasis">
-              Kontakta oss inom personal vid frågor!
+              Kontakta personal vid frågor!
             </v-card-subtitle>
           </div>
         </div>

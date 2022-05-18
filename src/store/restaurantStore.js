@@ -1,8 +1,11 @@
+import allMenu from './menu';
+
 const store = {
   state: () => ({
-    bookingDate: [{ date: '17/5-2022', time: '11:00', amount: 4, price: 100 }],
+    bookingDate: [{ date: '18/5-2022', time: '11:00', amount: 4, price: 100 }],
     bookingCart: [],
     bookingError: '',
+    menu: [],
   }),
   mutations: {
     addRestaurantBookingCart(state, payload) {
@@ -64,6 +67,11 @@ const store = {
         }
       }
       state.bookingCart = filtered;
+    },
+    setMenu(state, payload) {
+      const filteredMenu = allMenu.filter((item) => item.category === payload);
+      const sorted = filteredMenu.sort((a, b) => a.price - b.price);
+      state.menu = sorted;
     },
   },
   actions: {},

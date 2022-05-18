@@ -1,15 +1,7 @@
 <template>
   <div>
     <div class="backgroundImg">
-      <div class="d-flex justify-center text-white text-center align-center" :style="{ height: '25vh' }">
-        <div>
-          <h1 class="text-h3 font-weight-bold">RESTAURANG DELUX</h1>
-          <h3 class="text-h6 font-weight-bold font-italic">Med inspiration från hela världen</h3>
-          <router-link to="/food" class="text-white">
-            <h4 class="font-weight-medium font-italic">Se vår meny</h4>
-          </router-link>
-        </div>
-      </div>
+      <RestaurantHeader link="food" linkText="Se vår meny" />
       <v-container fluid>
         <RestaurantForm :style="{ paddingBottom: '3vh' }" />
       </v-container>
@@ -37,6 +29,7 @@
 <script>
 import RestaurantForm from '../components/RestaurantForm.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
+import RestaurantHeader from '../components/RestaurantHeader.vue';
 import { mapState } from 'vuex';
 
 export default {
@@ -50,6 +43,7 @@ export default {
   components: {
     RestaurantForm,
     RestaurantCard,
+    RestaurantHeader,
   },
   computed: {
     ...mapState({
