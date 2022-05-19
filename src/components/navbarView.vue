@@ -1,49 +1,62 @@
 <template>
   <div class="container">
     <div class="left_container">
-              <router-link to="/" class="home">
-                  <img
-                  :src=logo
-                  >
-              </router-link>
       <div class="weather">
-        <p>Vädret i Stockholm idag: {{ this.weather }}</p>
-        <p>varmast under dagen: {{ this.maxCelsius }}°C</p>
+        <p>
+          Vädret i Stockholm idag: {{ this.weather }}, varmast under dagen:
+          {{ this.maxCelsius }}°C
+        </p>
       </div>
     </div>
-    <ul class="links">
-      <li>
-        <router-link to="/cabin">Boka stuga</router-link>
-      </li>
-      <li>
-        <router-link to="/activities">Evenemang</router-link>
-      </li>
-      <li>
-        <router-link to="/restaurant">Restaurang</router-link>
-      </li>
-      <li>
-        <router-link to="/spa">Spa</router-link>
-      </li>
-      <li>
-        <router-link to="/about">Om oss</router-link>
-      </li>
+    <ul class="links" v-show="showOg">
+      <router-link class="li" to="/cabin">Boka stuga</router-link>
+      <router-link class="li" to="/activities">Evenemang</router-link>
+      <router-link class="li" to="/restaurant">Restaurang</router-link>
+      <router-link class="li" to="/spa">Spa</router-link>
+      <router-link class="li" to="/about">Om oss</router-link>
     </ul>
+    <div class="mobile_icon_menu" @click="resizeNav" v-show="openIcon">
+      <fa icon="bars" />
+    </div>
+    <div class="mobile_view" v-show="showNav">
+      <div class="mobile_icon" @click="toggleNav">
+      <fa icon="x" />
+      </div>
+      <ul class="mobile_links">
+        <router-link class="mobile_li" @click="hideBar" to="/cabin"
+          >Boka stuga</router-link
+        >
+        <router-link class="mobile_li" to="/activities">Evenemang</router-link>
+        <router-link class="mobile_li" to="/restaurant">Restaurang</router-link>
+        <router-link class="mobile_li" to="/spa">Spa</router-link>
+        <router-link class="mobile_li" to="/about">Om oss</router-link>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import logo from '../assets/sthlm.png'
+import logo from "../assets/sthlm.png";
 export default {
   name: "NavbarView",
   data() {
     return {
+      showOg: null,
+      showNav: null,
+      openIcon: null,
       weather: "",
       maxCelsius: "",
-      logo
+      logo,
+      width: null,
     };
   },
   mounted() {
-    this.fetchWeather();
+   this.fetchWeather();
+  },
+
+  created() {
+    window.addEventListener("resize", this.resizeNav);
+    this.resizeNav();
   },
 
   methods: {
@@ -80,6 +93,28 @@ export default {
           }
         });
     },
+    resizeNav() {
+      this.openIcon = null;
+      this.width = window.innerWidth;
+
+      if (this.width <= 1100) {
+        this.showOg = null;
+        console.log("nu");
+        this.showNav = true;
+      } else {
+        this.showNav = null;
+        this.showOg = true;
+        this.openIcon = false;
+      }
+    },
+    toggleNav() {
+      if ((this.showNav = null)) {
+        this.showNav = true;
+      } else {
+        this.showNav = false;
+        this.openIcon = true;
+      }
+    },
   },
 };
 </script>
@@ -90,26 +125,26 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
-  color: black;
+  color: white;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-
-img {
-    width: 100px;
-    height: 100px;
-    }
 
 .container {
   display: flex;
   justify-content: space-between;
+  margin-top: -100px;
   padding: 20px;
+  height: 80px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 99;
 }
 
 .left_container {
-  display: flex;
-  width: 50%;
-  justify-content: space-between;
+  margin: 0px 10px;
 }
 
 .weather {
@@ -123,18 +158,70 @@ img {
 .links {
   display: flex;
   padding: 10px;
+  position: relative;
 }
 
-li {
+.li {
   margin: 0px 10px;
 }
 
-li, .home {
-    transition: 0.3s ease all;
+.li,
+.mobile_li,
+.mobile_icon,
+.mobile_menu,
+.home {
+  transition: 0.3s ease all;
 }
 
-li:hover,
+.li:hover,
+.mobile_li:hover,
+.mobile_icon:hover,
+.mobile_icon_menu:hover,
 .home:hover {
   transform: translateY(-2px) scale(1.1) rotate(-1deg);
+  cursor: pointer;
+}
+
+.mobile_view {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  border: none;
+  z-index: 99;
+}
+
+.mobile_links {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(30, 30, 30, 0.6);
+}
+
+.mobile_li {
+  color: white;
+  font-size: 1.4rem;
+  margin: 10px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile_icon {
+  position: absolute;
+  padding: 30px;
+  right: 0;
+  top: 0;
+  color: white;
+}
+.mobile_icon_menu {
+  position: absolute;
+  padding: 30px;
+  right: 0;
+  top: 0;
+  color: white;
 }
 </style>
