@@ -1,36 +1,25 @@
 <template>
   <div class="header">
     <div class="text">
-          <h1>VÄLKOMMEN TILL NORRLANDS PÄRLA</h1>
-    <p>Drop in säsongsplatser & stugor öppet året runt</p>
+      <h1>VÄLKOMMEN TILL NORRLANDS PÄRLA</h1>
+      <p>Drop in säsongsplatser & stugor öppet året runt</p>
     </div>
     <div class="buttons">
-          <v-btn elevation="2" outlined>Plats för husvagn</v-btn>
-          <v-btn elevation="2" outlined>Tältplats</v-btn>
-
+      <v-btn elevation="2" outlined>Plats för husvagn</v-btn>
+      <v-btn elevation="2" outlined>Tältplats</v-btn>
     </div>
   </div>
 
   <div class="container">
-    <div
-      class="card"
-      v-for="(cabin, index) in $store.state.cabin.cabins"
-      :key="index"
-    >
-      <CabinCard
-        :text="cabin.title"
-        :info="cabin.info"
-        :title="cabin.trailer"
-        :img="cabin.img"
-        class="cabin"
-      />
+    <div class="card" v-for="(cabin, index) in $store.state.cabin.cabins" :key="index">
+      <CabinCard :text="cabin.title" :info="cabin.info" :title="cabin.trailer" :img="cabin.img" class="cabin" />
     </div>
   </div>
 </template>
 
 <script>
-import CabinCard from "@/components/CabinCard.vue";
-import CabinForm from "@/components/CabinForm.vue";
+import CabinCard from '@/components/CabinCard.vue';
+import CabinForm from '@/components/CabinForm.vue';
 export default {
   components: {
     CabinCard,
@@ -50,17 +39,16 @@ export default {
   width: 100%;
 
   height: 600px;
-  background-image: url("file:///Users/viktorwallin/Desktop/headerimg.avif");
+  background-image: url('@/assets/cabinIMG/headerimg.jpeg');
   background-position: center;
   background-size: cover;
-
 
   font-size: 1.3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   padding: 5rem;
 }
 
