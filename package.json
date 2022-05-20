@@ -7,7 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@mdi/font": "5.9.55",
+    "@fawmi/vue-google-maps": "^0.9.67",
+    "@mdi/font": "^6.7.96",
     "core-js": "^3.8.3",
     "roboto-fontface": "*",
     "vue": "^3.2.13",

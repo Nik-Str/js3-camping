@@ -7,6 +7,7 @@ import EventView from '../views/EventView.vue';
 import FoodView from '../views/FoodView.vue';
 import RestaurantView from '../views/RestaurantView.vue';
 import SpaView from '../views/SpaView.vue';
+import BeachView from '../views/BeachView.vue';
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: '/activities',
     name: 'activities',
     component: Activities,
+  },
+  {
+    path: '/beach',
+    name: 'beach',
+    component: BeachView,
   },
   {
     path: '/cabin',
