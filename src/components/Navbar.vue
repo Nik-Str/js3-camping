@@ -2,10 +2,7 @@
   <div class="container">
     <div class="left_container">
       <div class="weather">
-        <p>
-          Vädret i Stockholm idag: {{ this.weather }}, varmast under dagen:
-          {{ this.maxCelsius }}°C
-        </p>
+        <p>Vädret i Stockholm idag: {{ this.weather }}, varmast under dagen: {{ this.maxCelsius }}°C</p>
       </div>
     </div>
     <ul class="links" v-show="showOg">
@@ -20,12 +17,10 @@
     </div>
     <div class="mobile_view" v-show="showNav">
       <div class="mobile_icon" @click="toggleNav">
-      <fa icon="x" />
+        <fa icon="x" />
       </div>
       <ul class="mobile_links">
-        <router-link class="mobile_li" @click="hideBar" to="/cabin"
-          >Boka stuga</router-link
-        >
+        <router-link class="mobile_li" to="/cabin">Boka stuga</router-link>
         <router-link class="mobile_li" to="/activities">Evenemang</router-link>
         <router-link class="mobile_li" to="/restaurant">Restaurang</router-link>
         <router-link class="mobile_li" to="/spa">Spa</router-link>
@@ -36,60 +31,55 @@
 </template>
 
 <script>
-import logo from "../assets/sthlm.png";
+import logo from '../assets/sthlm.png';
 export default {
-  name: "NavbarView",
+  name: 'NavbarView',
   data() {
     return {
       showOg: null,
       showNav: null,
       openIcon: null,
-      weather: "",
-      maxCelsius: "",
+      weather: '',
+      maxCelsius: '',
       logo,
       width: null,
     };
   },
   mounted() {
-   this.fetchWeather();
+    this.fetchWeather();
   },
 
   created() {
-    window.addEventListener("resize", this.resizeNav);
+    window.addEventListener('resize', this.resizeNav);
     this.resizeNav();
   },
 
   methods: {
     fetchWeather() {
       const options = {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "X-RapidAPI-Host": "yahoo-weather5.p.rapidapi.com",
-          "X-RapidAPI-Key":
-            "b734433830msh4203f0ed73e9e8fp15a4d6jsn63bf803b2659",
+          'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com',
+          'X-RapidAPI-Key': 'b734433830msh4203f0ed73e9e8fp15a4d6jsn63bf803b2659',
         },
       };
 
-      fetch(
-        "https://yahoo-weather5.p.rapidapi.com/weather?location=stockholm&format=json&u=c",
-        options
-      )
+      fetch('https://yahoo-weather5.p.rapidapi.com/weather?location=stockholm&format=json&u=c', options)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           let weather = data.forecasts[0].text;
           this.maxCelsius = data.forecasts[0].high;
 
           //console.log(this.weather);
 
-          if (weather.includes("Partly Cloudy")) {
-            this.weather = "Delvis molnigt";
-          } else if (weather.includes("Cloudy")) {
-            this.weather = "Molnigt";
-          } else if (weather.includes("Rain")) {
-            this.weather = "Regnigt";
-          } else if (weather.includes("Sunny")) {
-            this.weather = "Soligt";
+          if (weather.includes('Partly Cloudy')) {
+            this.weather = 'Delvis molnigt';
+          } else if (weather.includes('Cloudy')) {
+            this.weather = 'Molnigt';
+          } else if (weather.includes('Rain')) {
+            this.weather = 'Regnigt';
+          } else if (weather.includes('Sunny')) {
+            this.weather = 'Soligt';
           }
         });
     },
@@ -99,7 +89,7 @@ export default {
 
       if (this.width <= 1100) {
         this.showOg = null;
-        console.log("nu");
+        console.log('nu');
         this.showNav = true;
       } else {
         this.showNav = null;
@@ -128,7 +118,7 @@ export default {
   color: white;
   font-weight: bold;
   font-size: 1rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .container {

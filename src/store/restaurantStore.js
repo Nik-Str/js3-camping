@@ -2,7 +2,7 @@ import allMenu from './menu';
 
 const store = {
   state: () => ({
-    bookingDate: [{ date: '20/5-2022', time: '11:00', amount: 4, price: 100 }],
+    bookingDate: [{ date: '22/5-2022', time: '11:00', amount: 4, price: 100 }],
     bookingCart: [],
     bookingError: '',
     menu: [],
