@@ -25,9 +25,6 @@ export default {
     Cart,
     Navbar,
   },
-  data: () => ({
-    //
-  }),
 };
 </script>
 

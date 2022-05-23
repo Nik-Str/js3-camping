@@ -9,7 +9,7 @@
   </div>
 
   <v-container fluid>
-    <Maps class="mt-4" />
+    <Maps class="mt-4" :markers="markers" />
     <BeachInfo class="mb-8" />
   </v-container>
 </template>
@@ -20,6 +20,43 @@ import BeachInfo from '../components/BeachInfo.vue';
 
 export default {
   name: 'BeachView',
+  data() {
+    return {
+      markers: [
+        {
+          position: {
+            lat: 57.27456066053389,
+            lng: 17.052761773588667,
+          },
+        },
+
+        {
+          position: {
+            lat: 57.28423060155824,
+            lng: 17.06167735672246,
+          },
+        },
+        {
+          position: {
+            lat: 57.3016871692964,
+            lng: 17.08956625371586,
+          },
+        },
+        {
+          position: {
+            lat: 57.25867864347498,
+            lng: 17.05556713839516,
+          },
+        },
+        {
+          position: {
+            lat: 57.309649533807644,
+            lng: 17.114712416148954,
+          },
+        },
+      ],
+    };
+  },
   components: {
     Maps,
     BeachInfo,
