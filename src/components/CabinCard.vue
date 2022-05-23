@@ -22,8 +22,7 @@
       <div v-show="show">
         <v-divider></v-divider>
         <v-card-text>
-          {{info}}
-        <v-btn class="mt-6 mb-2" elevation="2" rounded width="100px">Boka</v-btn>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quod perspiciatis fugit maiores voluptas veritatis suscipit molestiae veniam quas placeat blanditiis ad dicta, nam earum impedit, soluta minus odio accusantium?
         </v-card-text>
 
       </div>

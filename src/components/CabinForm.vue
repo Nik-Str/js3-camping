@@ -1,48 +1,151 @@
 <template>
-  <form>
-    <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
-      :counter="10"
-      label="Namn"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
-    ></v-text-field>
-    <v-text-field
-      v-model="email"
-      :error-messages="emailErrors"
-      label="E-mail"
-      required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
-    ></v-text-field>
-    <v-select
-      v-model="select"
-      :items="items"
-      :error-messages="selectErrors"
-      label="Item"
-      required
-      @change="$v.select.$touch()"
-      @blur="$v.select.$touch()"
-    ></v-select>
-    <v-checkbox
-      v-model="checkbox"
-      :error-messages="checkboxErrors"
-      label="Do you agree?"
-      required
-      @change="$v.checkbox.$touch()"
-      @blur="$v.checkbox.$touch()"
-    ></v-checkbox>
-
-    <v-btn
-      class="mr-4"
-      @click="submit"
-    >
-      submit
-    </v-btn>
-    <v-btn @click="clear">
-      clear
-    </v-btn>
-  </form>
+  <div class="text">
+    <h2>{{ this.text }}</h2>
+  </div>
+  <div class="container">
+    <v-row align="center">
+      <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
+        <v-text-field
+          class="elevation-1 bg-white rounded mx-3"
+          v-model="name"
+          label="Namn"
+          hide-details="auto"
+        ></v-text-field>
+      </v-col>
+      <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
+        <select v-model="selectedDate" class="select mx-3" :class="{ standard: selectedDate === 'Från dag' }">
+          <option value="Från dag">Från dag</option>
+          <option v-for="(item, index) in date" :key="item + index" :value="item">{{ item }}</option>
+        </select>
+      </v-col>
+      <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
+        <select v-model="selectedDays" class="select mx-3" :class="{ standard: selectedDays === 'Antal dagar?' }">
+          <option value="Antal dagar?">Antal dagar?</option>
+          <option v-for="(item, index) in days" :key="item + index" :value="item">{{ item }}</option>
+        </select>
+      </v-col>
+      <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
+        <select v-model="selectedCabin" class="select mx-3" :class="{ standard: selectedCabin === 'Vilken stuga?' }">
+          <option value="Vilken stuga?">Vilken stuga?</option>
+          <option v-for="(item, index) in cabin" :key="item + index" :value="item">{{ item }}</option>
+        </select>
+      </v-col>
+    </v-row>
+  </div>
+  <v-btn type="button" :disabled="valid" @click="bookCabin" class="mt-6 mb-2" elevation="2" rounded width="100px"
+    >Boka</v-btn
+  >
 </template>
+
+<script>
+export default {
+  name: 'CabinForm',
+  data() {
+    return {
+      valid: true,
+      name: null,
+      selectedDate: 'Från dag',
+      selectedDays: 'Antal dagar?',
+      selectedCabin: 'Vilken stuga?',
+      text: 'Boka din stuga här nedanför',
+      days: [1, 2, 3, 4, 5, 6, 7],
+      cabin: ['Afterbeach-stugan', 'Semester-stugan', 'Strand-stugan', 'Glass-stugan', 'Cykel-stugan', 'Grillstugan'],
+      date: [],
+    };
+  },
+  methods: {
+    bookCabin() {
+      this.$store.commit('addCabinBook', {
+        name: this.name,
+        date: this.selectedDate,
+        days: this.selectedDays,
+        place: this.selectedCabin,
+      });
+      this.text = 'Du är nu bokad!';
+      this.name = null;
+      this.selectedDate = 'Från dag';
+      this.selectedDays = 'Antal dagar?';
+      this.selectedCabin = 'Vilken stuga?';
+    },
+    validate() {
+      if (
+        this.selectedDate !== 'Från dag' &&
+        this.selectedDays !== 'Antal dagar?' &&
+        this.selectedCabin !== 'Vilken stuga?' &&
+        this.name !== null
+      ) {
+        this.valid = false;
+      }
+    },
+  },
+  watch: {
+    selectedDate() {
+      this.validate();
+    },
+    selectedDays() {
+      this.validate();
+    },
+    selectedCabin() {
+      this.validate();
+    },
+    name() {
+      this.validate();
+    },
+  },
+  mounted() {
+    let allDates = [];
+    let newMonth = 1;
+    for (let i = 0; i < 14; i++) {
+      const daysInMonth = (month, year) => new Date(year, month, 0).getDate();
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+
+      if (daysInMonth(year, month) >= day + i) {
+        allDates.push(day + i + '/' + month + '-' + year);
+      } else {
+        allDates.push(newMonth + '/' + (month + 1) + '-' + year);
+        newMonth++;
+      }
+    }
+    this.date = allDates;
+  },
+};
+</script>
+
+<style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container {
+  display: flex;
+  width: 800px;
+}
+
+.text {
+  color: #f1f1f1;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 70%;
+  text-align: center;
+}
+
+.standard {
+  color: grey;
+}
+
+.select {
+  height: 56px;
+  width: 100%;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 500;
+  text-indent: 0.0892857143em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  background-color: white;
+}
+</style>

@@ -11,8 +11,8 @@
         v-for="(item, index) in $store.state.restaurant.bookingCart"
         :key="item.time + index"
         :value="{ item }"
-        @click="handleSelected(item)"
-        v-bind:class="{ 'bg-black': selected === item }"
+        @click="handleSelectedFood(item)"
+        v-bind:class="{ 'bg-black': selectedFood === item }"
       >
         <v-list-item-header>
           <v-list-item-title>{{ item.date + ':' + item.time }}</v-list-item-title>
@@ -21,16 +21,34 @@
         <p class="text-body-2">{{ item.price }}kr</p>
       </v-list-item>
 
-      <!-- <v-list-item prepend-icon="mdi-home" title="Cabin"></v-list-item> -->
+      <v-list-item
+        lines="two"
+        prepend-icon="mdi-home"
+        v-for="(item, index) in $store.state.cabin.cabinCart"
+        :key="item.date + index"
+        :value="{ item }"
+        @click="handleSelectedCabin(item)"
+        v-bind:class="{ 'bg-black': selectedCabin === item }"
+      >
+        <v-list-item-header>
+          <v-list-item-title>{{ item.date + ':' + item.days }}</v-list-item-title>
+          <v-list-item-subtitle>{{ item.place }}</v-list-item-subtitle>
+        </v-list-item-header>
+        <p class="text-body-2">{{ item.price }}kr</p>
+      </v-list-item>
+
       <!-- <v-list-item prepend-icon="mdi-account" title="Spa"></v-list-item> -->
 
       <v-list-item title="Total:" class="mb-4"
-        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal }}kr</p>
+        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal + getCabinTotal }}kr</p>
       </v-list-item>
     </v-list>
 
     <div class="checkout">
-      <v-icon v-if="selected" large color="black" class="mb-4 deleteIcon" @click="handleRemoveRestaurant"
+      <v-icon v-if="selectedFood" large color="black" class="mb-4 deleteIcon" @click="handleRemoveRestaurant"
+        >mdi-delete</v-icon
+      >
+      <v-icon v-if="selectedCabin" large color="black" class="mb-4 deleteIcon" @click="handleRemoveCabin"
         >mdi-delete</v-icon
       >
       <div>
@@ -47,25 +65,37 @@ export default {
   name: 'Cart',
   data() {
     return {
-      selected: null,
+      selectedFood: null,
+      selectedCabin: null,
     };
   },
   props: ['display'],
   methods: {
-    handleSelected(item) {
-      if (this.selected !== item) {
-        this.selected = item;
+    handleSelectedFood(item) {
+      if (this.selectedFood !== item) {
+        this.selectedFood = item;
       } else {
-        this.selected = null;
+        this.selectedFood = null;
       }
     },
     handleRemoveRestaurant() {
-      this.$store.commit('removeRestaurantBookingCart', this.selected);
-      this.selected = null;
+      this.$store.commit('removeRestaurantBookingCart', this.selectedFood);
+      this.selectedFood = null;
+    },
+    handleSelectedCabin(item) {
+      if (this.selectedCabin !== item) {
+        this.selectedCabin = item;
+      } else {
+        this.selectedCabin = null;
+      }
+    },
+    handleRemoveCabin() {
+      this.$store.commit('removeCabinBookingCart', this.selectedCabin);
+      this.selectedCabin = null;
     },
   },
   computed: {
-    ...mapGetters(['getRestaurantTotal']),
+    ...mapGetters(['getRestaurantTotal', 'getCabinTotal']),
   },
 };
 </script>
