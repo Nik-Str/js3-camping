@@ -50,9 +50,9 @@ export default {
       width: null,
     };
   },
-  mounted() {
-   this.fetchWeather();
-  },
+  //mounted() {
+   //this.fetchWeather();
+  //},
 
   created() {
     window.addEventListener("resize", this.resizeNav);
@@ -99,7 +99,6 @@ export default {
 
       if (this.width <= 1100) {
         this.showOg = null;
-        console.log("nu");
         this.showNav = true;
       } else {
         this.showNav = null;
