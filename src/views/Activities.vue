@@ -77,6 +77,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 3rem;
+  padding-top: 10vh;
 }
 
 .closeBy {

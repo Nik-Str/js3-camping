@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-center text-white text-center align-center" :style="{ height: '25vh' }">
+  <div class="d-flex justify-center text-white text-center align-center" :style="{ minHeight: '25vh' }">
     <div>
       <h1 class="text-h3 font-weight-bold">RESTAURANG DELUX</h1>
       <h3 class="text-h6 font-weight-bold font-italic">Med inspiration från hela världen</h3>

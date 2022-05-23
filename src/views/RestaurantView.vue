@@ -88,6 +88,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 10vh;
 }
 
 @media only screen and (max-width: 960px) {
