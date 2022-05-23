@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import spa from '../components/spacard.vue';
+import spacard from '../components/spacard.vue';
 
 export default {
-  name: 'Testing',
+  name: 'spa',
   data() {
     return {
       spa: [
@@ -54,7 +54,7 @@ export default {
     };
   },
   components: {
-    spa,
+    spacard,
   },
 };
 </script>
