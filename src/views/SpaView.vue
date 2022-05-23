@@ -1,159 +1,94 @@
 <template>
-  <v-card
-    :loading="loading"
-    class="mx-auto my-12 inline-block"
-    max-width="374"
-  >
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+  <div class="backgroundImg">
+    <div class="d-flex justify-center text-white text-center align-center" :style="{ height: '35vh' }">
+      <div>
+        <h1 class="text-h3 font-weight-bold">SPA OCH MASSAGE</h1>
+        <h3 class="text-h6 font-weight-bold font-italic">massage, yoga och avslappnings övniningar för dig som behöver en slappna av </h3>
+      </div>
+    </div>
+  </div>
 
-    <v-img
-      height="250"
-      src="https://media.happy-day.se//happyday/images/massage-2018-12-11-144703801/0/0/0/massage.jpg"
-    ></v-img>
-
-    <v-card-title>Massage</v-card-title>
-
-    <v-card-text>
-      <div>Skön avslappnade massage som passar för alla tillfällen och händelser</div>
-    </v-card-text>
-
-    <v-divider class="mx-4"></v-divider>
-
-    <v-card-title>Dagens tider</v-card-title>
-
-    <v-card-text>
-      <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-      <v-chip v-for="(value, id) in profile.bookning" :key="id">
-          {{ value.time }}
-      </v-chip>
-
-
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="reserve"
-      >
-        Reservera
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-
-
-  <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
-
-    <v-img
-      height="250"
-      src="https://previews.123rf.com/images/denisfilm/denisfilm1805/denisfilm180501548/101809407-les-gens-qui-font-des-exercices-de-yoga-en-plein-air-cours-de-yoga-en-groupe-sur-l-herbe-.jpg"
-    ></v-img>
-
-    <v-card-title>Yogamassage</v-card-title>
-
-    <v-card-text>
-      <div>För dig som vill slappna av tillsammans med andra i en gemensam övning</div>
-    </v-card-text>
-
-    <v-divider class="mx-4"></v-divider>
-
-    <v-card-title>Dagens tider</v-card-title>
-
-    <v-card-text>
-      <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>11:00</v-chip>
-
-        <v-chip>13:00</v-chip>
-
-        <v-chip>15:00</v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="reserve"
-      >
-        Reservera
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-
-  
-
+  <v-container fluid>
+    <spacard class="mb-3" :data="spa" />
+  </v-container>
 </template>
 
 <script>
-  export default {
-    name: 'bookning',
-    data: () => ({
-      profile:{
-        bookning: [
-          {
-            "id":1,
-            "time": "10:00"
-          },
+import spacard from '../components/spacard.vue';
 
-          {
-            "id":2,
-            "time": "12:00"
-          },   
-          
-          {
-            "id":3,
-            "time": "14:00"
-          },
-          
-          {
-            "id":4,
-            "time": "16:00"
-          } 
-        ]
-      }
-    })
-  }
+export default {
+  name: 'spa',
+  data() {
+    return {
+      spa: [
+        { 
+          title: 'Massage',
+          sub: 'Välj mellan klassik och hård massage',
+          img: require('@/assets/SpaIMG/massage.jpg') },
+        {
+          title: 'Yoga',
+          sub: 'Allt från utegym, joggingspår, paddel, mm',
+          img: require('@/assets/SpaIMG/Yoga1.jpg'),
+        },
+        {
+          title: 'Hot-stone',
+          sub: 'Avslappning med naturlig varma stenar',
+          img: require('@/assets/SpaIMG/Hotstone.jpg'),
+        },
+        {
+          title: 'Grupp Yoga utomhus',
+          sub: 'Yoga i grupp för hela familjen',
+          img: require('@/assets/SpaIMG/GruppYoga.jpg'),
+        },
+        {
+          title: 'Spa, bad och bastu',
+          sub: 'Slappna av själv, din kära eller hela familj med pool, spa och bastu',
+          img: require('@/assets/SpaIMG/SpaBad.jpg'),
+        },
+        {
+          title: 'Utomhus bastu',
+          sub: 'Ta ett dopp och värm upp dig i en ab våra utomhus bastu',
+          img: require('@/assets/SpaIMG/Bastu.jpg'),
+        },
+      ],
+    };
+  },
+  components: {
+    spacard,
+  },
+};
 </script>
 
-<!-- <script>
-  export default {
-    data: () => ({
-      loading: false,
-      selection: 1,
-    }),
+<style lang="scss" scoped>
+.backgroundImg {
+  background-image: url('../assets/spa-background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-    methods: {
-      reserve () {
-        this.loading = true
+.closeBy {
+  background-image: url('../assets/spa-background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 7rem;
+  width: 100%;
+}
 
-        setTimeout(() => (this.loading = false), 2000)
-      },
-    },
+.closeByOverlayer {
+  background-color: rgba(250, 250, 250, 0.903);
+  width: 100%;
+  height: 100%;
+}
+
+.v-container {
+  max-width: 60vw;
+}
+
+@media only screen and (max-width: 960px) {
+  .v-container {
+    max-width: 100vw;
   }
-</script> -->
+}
+</style>
