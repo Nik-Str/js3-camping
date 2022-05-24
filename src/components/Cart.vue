@@ -74,6 +74,7 @@ export default {
     handleSelectedFood(item) {
       if (this.selectedFood !== item) {
         this.selectedFood = item;
+        this.selectedCabin = null;
       } else {
         this.selectedFood = null;
       }
@@ -85,6 +86,7 @@ export default {
     handleSelectedCabin(item) {
       if (this.selectedCabin !== item) {
         this.selectedCabin = item;
+        this.selectedFood = null;
       } else {
         this.selectedCabin = null;
       }

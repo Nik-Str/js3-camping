@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "test": "jest"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.67",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
-    "@fawmi/vue-google-maps": "^0.9.67",
     "@mdi/font": "^6.7.96",
     "core-js": "^3.8.3",
     "roboto-fontface": "*",
@@ -22,13 +24,22 @@
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
+    "@cypress/vue": "^3.1.2",
+    "@cypress/webpack-dev-server": "^1.8.4",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-unit-jest": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-jest": "^27.0.6",
+    "cypress": "^9.7.0",
+    "jest": "^27.0.5",
     "sass": "^1.38.0",
     "sass-loader": "^12.0.0",
     "vue-cli-plugin-vuetify": "~2.4.8",
-    "vuetify-loader": "^2.0.0-alpha.0"
+    "vuetify-loader": "^2.0.0-alpha.0",
+    "webpack-dev-server": "^4.9.0"
   }
 }
