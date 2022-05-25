@@ -6,7 +6,11 @@
     </v-container>
   </div>
   <v-container fluid>
-    <Menu />
+    <Menu>
+      <template #menuTitle>
+        <h4 class="text-center text-grey mb-0 pt-2">{{ selectedMenu }}</h4>
+      </template>
+    </Menu>
   </v-container>
 </template>
 
@@ -17,6 +21,11 @@ import Menu from '../components/Menu.vue';
 
 export default {
   name: 'Food',
+  data() {
+    return {
+      selectedMenu: 'VUXENMENY',
+    };
+  },
   components: {
     RestaurantHeader,
     MenuSelector,
@@ -25,6 +34,9 @@ export default {
   methods: {
     changeMenu(menu) {
       this.$store.commit('setMenu', menu);
+      if (menu === 'adults') this.selectedMenu = 'VUXENMENY';
+      if (menu === 'children') this.selectedMenu = 'BARNMENY';
+      if (menu === 'couple') this.selectedMenu = 'PARMENY';
     },
   },
   mounted() {

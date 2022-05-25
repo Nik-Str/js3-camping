@@ -207,7 +207,6 @@ export default {
   methods: {
     handleSelected(select) {
       this.selected = select;
-      console.log(this.selected);
     },
   },
   computed: {

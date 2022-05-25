@@ -8,24 +8,31 @@ const store = {
     menu: [],
   }),
   mutations: {
+    //Handles booking validation and confirmation
     addRestaurantBookingCart(state, payload) {
       const existInBooking = state.bookingDate.filter(
         (item) => item.date === payload.date && item.time === payload.time
       );
       const existInCart = state.bookingCart.filter((item) => item.date === payload.date && item.time === payload.time);
 
+      //Controlls if spec of booking input already exist
       if (existInCart[0] || existInBooking[0]) {
         const alreadyBooked = existInBooking[0] ? existInBooking[0].amount : 0;
 
+        //Validates booking spec if similar already exist in cart
         if (existInCart[0]) {
+          //Controlls amount against existing bookings
           if (existInCart[0].amount + payload.amount + alreadyBooked <= 12) {
             state.bookingCart = state.bookingCart.map((item) => {
+              //Increment cart item amount on existing spec
               if (item.date === payload.date && item.time === payload.time) {
                 return { ...item, amount: item.amount + payload.amount };
+                //Add new item to cart
               } else {
                 return item;
               }
             });
+            //Add error msg if reach booking amount limit
           } else {
             if (existInCart[0].amount + alreadyBooked < 12) {
               state.bookingError = `${existInCart[0].date} kl. ${existInCart[0].time} finns endast ${
@@ -35,9 +42,13 @@ const store = {
               state.bookingError = `${existInCart[0].date} kl. ${existInCart[0].time} är restaurangen fullbokad.`;
             }
           }
+          //Validates booking spec if similar already exist in system but not in cart
         } else {
+          //Controlls amount against system bookings
           if (payload.amount + alreadyBooked <= 12) {
+            //Add new item to cart
             state.bookingCart = [{ ...payload, price: 100 }];
+            //Add error msg if reach limit
           } else {
             if (alreadyBooked < 12) {
               state.bookingError = `${payload.date} kl. ${payload.time} finns endast ${
@@ -48,6 +59,7 @@ const store = {
             }
           }
         }
+        //Adds new booking to cart
       } else {
         state.bookingCart = [...state.bookingCart, { ...payload, price: 100 }];
       }
