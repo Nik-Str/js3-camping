@@ -31,8 +31,8 @@
         v-bind:class="{ 'bg-black': selectedCabin === item }"
       >
         <v-list-item-header>
-          <v-list-item-title>{{ item.date + ':' + item.days }}</v-list-item-title>
-          <v-list-item-subtitle>{{ item.place }}</v-list-item-subtitle>
+          <v-list-item-title>{{ item.date + ':' + item.days }}d</v-list-item-title>
+          <v-list-item-subtitle>{{ item.type }}</v-list-item-subtitle>
         </v-list-item-header>
         <p class="text-body-2">{{ item.price }}kr</p>
       </v-list-item>
