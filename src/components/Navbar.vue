@@ -7,7 +7,8 @@
     </div>
     <ul class="links" v-show="showOg">
       <router-link class="li" to="/cabin">Boka stuga</router-link>
-      <router-link class="li" to="/activities">Evenemang</router-link>
+      <router-link class="li" to="/activities">Att göra</router-link>
+      <router-link class="li" to="/event">Evenemang</router-link>
       <router-link class="li" to="/restaurant">Restaurang</router-link>
       <router-link class="li" to="/spa">Spa</router-link>
       <router-link class="li" to="/about">Om oss</router-link>
@@ -21,7 +22,8 @@
       </div>
       <ul class="mobile_links">
         <router-link class="mobile_li" to="/cabin">Boka stuga</router-link>
-        <router-link class="mobile_li" to="/activities">Evenemang</router-link>
+        <router-link class="mobile_li" to="/activities">Att göra</router-link>
+        <router-link class="mobile_li" to="/event">Evenemang</router-link>
         <router-link class="mobile_li" to="/restaurant">Restaurang</router-link>
         <router-link class="mobile_li" to="/spa">Spa</router-link>
         <router-link class="mobile_li" to="/about">Om oss</router-link>

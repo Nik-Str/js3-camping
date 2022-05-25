@@ -24,7 +24,6 @@ const store = {
       state.cabinCart = state.cabinCart.filter((item) => item !== payload);
     },
   },
-  actions: {},
   getters: {
     getCabinTotal(state) {
       let total = 0;
