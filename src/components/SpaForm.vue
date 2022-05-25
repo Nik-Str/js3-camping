@@ -13,8 +13,8 @@
         ></v-text-field>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
-        <select v-model="selectedDate" class="select mx-3" :class="{ standard: selectedDate === 'Från dag' }">
-          <option value="Från dag">Från dag</option>
+        <select v-model="selectedDate" class="select mx-3" :class="{ standard: selectedDate === 'Välj dag' }">
+          <option value="Välj dag">Välj dag</option>
           <option v-for="(item, index) in date" :key="item + index" :value="item">{{ item }}</option>
         </select>
       </v-col>
@@ -25,53 +25,53 @@
         </select>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
-        <select v-model="selectedCabin" class="select mx-3" :class="{ standard: selectedCabin === 'Vilken Tjänst' }">
-          <option value="Vilken Tjänst">Vilken Tjänst</option>
-          <option v-for="(item, index) in cabin" :key="item + index" :value="item">{{ item }}</option>
+        <select v-model="selectedSpa" class="select mx-3" :class="{ standard: selectedSpa === 'Välj tjänst' }">
+          <option value="Välj tjänst">Välj tjänst</option>
+          <option v-for="(item, index) in Spa" :key="item + index" :value="item">{{ item }}</option>
         </select>
       </v-col>
     </v-row>
   </div>
-  <v-btn type="button" :disabled="valid" @click="bookCabin" class="mt-6 mb-2" elevation="2" rounded width="100px"
+  <v-btn type="button" :disabled="valid" @click="BookSpa" class="mt-6 mb-2" elevation="2" rounded width="100px"
     >Boka</v-btn
   >
 </template>
 
 <script>
 export default {
-  name: 'CabinForm',
+  name: 'SpaForm',
   data() {
     return {
       valid: true,
       name: null,
-      selectedDate: 'Från dag',
+      selectedDate: 'Välj dag',
       selectedDays: 'Välj Tid',
-      selectedCabin: 'Vilken Tjänst',
+      selectedSpa: 'Välj tjänst',
       text: 'Boka här!',
       days: ["12:00 - 14:00","14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00"],
-      cabin: ['Massage', 'Yoga', 'Hot-Stone', 'Grupp Yoga utomhus', 'Spa, bad och bastu', 'Utomhus bastu'],
+      Spa: ['Massage', 'Yoga', 'Hot-Stone', 'Grupp Yoga utomhus', 'Spa, bad och bastu', 'Utomhus bastu'],
       date: [],
     };
   },
   methods: {
-    bookCabin() {
-      this.$store.commit('addCabinBook', {
+    BookSpa() {
+      this.$store.commit('addSpaBook', {
         name: this.name,
         date: this.selectedDate,
         days: this.selectedDays,
-        place: this.selectedCabin,
+        place: this.selectedSpa,
       });
       this.text = 'Tack för bokningen!';
       this.name = null;
-      this.selectedDate = 'Från dag';
+      this.selectedDate = 'Välj dag';
       this.selectedDays = 'Välj Tid';
-      this.selectedCabin = 'Vilken Tjänst';
+      this.selectedSpa = 'Välj tjänst';
     },
     validate() {
       if (
-        this.selectedDate !== 'Från dag' &&
+        this.selectedDate !== 'Välj dag' &&
         this.selectedDays !== 'Välj Tid' &&
-        this.selectedCabin !== 'Vilken Tjänst' &&
+        this.selectedSpa !== 'Välj tjänst' &&
         this.name !== null
       ) {
         this.valid = false;
@@ -85,7 +85,7 @@ export default {
     selectedDays() {
       this.validate();
     },
-    selectedCabin() {
+    selectedSpa() {
       this.validate();
     },
     name() {
