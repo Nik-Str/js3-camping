@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .v-text-field {
   .v-input__details {
     display: none !important;
