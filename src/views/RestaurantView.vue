@@ -10,14 +10,14 @@
       <RestaurantCard />
     </v-container>
 
-    <v-snackbar v-model="msgErr" multi-line color="white" absolute right top elevation="24">
+    <v-snackbar v-model="msgErr" multi-line color="white" absolute right top elevation="24" :style="{ zIndex: 2000 }">
       {{ bookingError }}
       <template v-slot:actions>
         <v-btn color="orange" variant="text" @click="closeMsgErr"> Ok </v-btn>
       </template>
     </v-snackbar>
 
-    <v-snackbar v-model="msgCart" multi-line color="white" absolute right top elevation="24">
+    <v-snackbar v-model="msgCart" multi-line color="white" absolute right top elevation="24" :style="{ zIndex: 2000 }">
       En ny bokning har lagts till i din varukorg!
       <template v-slot:actions>
         <v-btn color="orange" variant="text" @click="closeMsgAdd"> Ok </v-btn>

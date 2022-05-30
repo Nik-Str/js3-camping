@@ -1,8 +1,10 @@
 <template>
-  <div class="text">
-    <h2>{{ this.text }}</h2>
+  <div class="d-flex justify-center pt-5">
+    <div class="text">
+      <h2>{{ text }}</h2>
+    </div>
   </div>
-  <div class="container">
+  <v-container>
     <v-row align="center">
       <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
         <v-text-field
@@ -19,22 +21,24 @@
         </select>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
-        <select v-model="selectedDays" class="select mx-3" :class="{ standard: selectedDays === 'Antal dagar?' }">
-          <option value="Antal dagar?">Antal dagar?</option>
+        <select v-model="selectedDays" class="select mx-3" :class="{ standard: selectedDays === 'Antal dagar' }">
+          <option value="Antal dagar">Antal dagar</option>
           <option v-for="(item, index) in days" :key="item + index" :value="item">{{ item }}</option>
         </select>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="3" sm="4">
-        <select v-model="selectedCabin" class="select mx-3" :class="{ standard: selectedCabin === 'Vilken stuga?' }">
-          <option value="Vilken stuga?">Vilken stuga?</option>
-          <option v-for="(item, index) in cabin" :key="item + index" :value="item">{{ item }}</option>
+        <select v-model="selectedCabin" class="select mx-3" :class="{ standard: selectedCabin === 'Välj boende' }">
+          <option value="Välj boende">Välj boende</option>
+          <option v-for="(item, index) in cabin" :key="item + index" :value="item.value">{{ item.name }}</option>
         </select>
       </v-col>
+      <v-col class="d-flex justify-center align-center" cols="12">
+        <v-btn type="button" :disabled="valid" @click="bookCabin" class="mt-0 mb-2" elevation="2" rounded width="100px"
+          >Boka</v-btn
+        >
+      </v-col>
     </v-row>
-  </div>
-  <v-btn type="button" :disabled="valid" @click="bookCabin" class="mt-6 mb-2" elevation="2" rounded width="100px"
-    >Boka</v-btn
-  >
+  </v-container>
 </template>
 
 <script>
@@ -45,11 +49,18 @@ export default {
       valid: true,
       name: null,
       selectedDate: 'Från dag',
-      selectedDays: 'Antal dagar?',
-      selectedCabin: 'Vilken stuga?',
-      text: 'Boka din stuga här nedanför',
+      selectedDays: 'Antal dagar',
+      selectedCabin: 'Välj boende',
+      text: 'Boka ditt boende här nedanför:',
       days: [1, 2, 3, 4, 5, 6, 7],
-      cabin: ['Afterbeach-stugan', 'Semester-stugan', 'Strand-stugan', 'Glass-stugan', 'Cykel-stugan', 'Grillstugan'],
+      cabin: [
+        { name: 'Afterbeach-stugan', value: 'Stuga' },
+        { name: 'Semester-stugan', value: 'Stuga' },
+        { name: 'Strand-stugan', value: 'Stuga' },
+        { name: 'Glass-stugan', value: 'Stuga' },
+        { name: 'Husvagnplats', value: 'Husvagnplats' },
+        { name: 'Tältplats', value: 'Tältplats' },
+      ],
       date: [],
     };
   },
@@ -59,19 +70,19 @@ export default {
         name: this.name,
         date: this.selectedDate,
         days: this.selectedDays,
-        place: this.selectedCabin,
+        type: this.selectedCabin,
       });
-      this.text = 'Du är nu bokad!';
+      this.text = 'Din bokning finns nu i kundvagnen!';
       this.name = null;
       this.selectedDate = 'Från dag';
-      this.selectedDays = 'Antal dagar?';
-      this.selectedCabin = 'Vilken stuga?';
+      this.selectedDays = 'Antal dagar';
+      this.selectedCabin = 'Välj boende';
     },
     validate() {
       if (
         this.selectedDate !== 'Från dag' &&
-        this.selectedDays !== 'Antal dagar?' &&
-        this.selectedCabin !== 'Vilken stuga?' &&
+        this.selectedDays !== 'Antal dagar' &&
+        this.selectedCabin !== 'Välj boende' &&
         this.name !== null
       ) {
         this.valid = false;
@@ -115,25 +126,27 @@ export default {
 </script>
 
 <style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container {
-  display: flex;
-  width: 800px;
-}
-
 .text {
   color: #f1f1f1;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.503);
   width: 70%;
   text-align: center;
+  margin-top: 3rem;
+  border-radius: 4px;
 }
 
 .standard {
   color: grey;
+}
+
+.v-container {
+  max-width: 60vw;
+}
+
+@media only screen and (max-width: 960px) {
+  .v-container {
+    max-width: 100vw;
+  }
 }
 
 .select {
