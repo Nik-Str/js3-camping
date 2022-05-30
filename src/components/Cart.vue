@@ -25,13 +25,13 @@
         lines="two"
         prepend-icon="mdi-home"
         v-for="(item, index) in $store.state.cabin.cabinCart"
-        :key="item.date + index"
+        :key="item.days + index"
         :value="{ item }"
         @click="handleSelectedCabin(item)"
         v-bind:class="{ 'bg-black': selectedCabin === item }"
       >
         <v-list-item-header>
-          <v-list-item-title>{{ item.date + ':' + item.days }}d</v-list-item-title>
+          <v-list-item-title>Vecka {{ item.days }}</v-list-item-title>
           <v-list-item-subtitle>{{ item.type }}</v-list-item-subtitle>
         </v-list-item-header>
         <p class="text-body-2">{{ item.price }}kr</p>

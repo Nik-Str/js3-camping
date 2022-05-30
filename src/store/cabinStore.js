@@ -1,21 +1,14 @@
 const store = {
   state: () => ({
-    cabinBooked: [
-      {
-        name: 'Anders',
-        date: '20/5-2022',
-        days: 5,
-        place: 'Afterbeach-stugan',
-      },
-    ],
+    cabinBooked: [],
     cabinCart: [],
   }),
   mutations: {
     addCabinBook(state, payload) {
       let price;
-      if (payload.type === 'Stuga') price = payload.days * 999;
-      if (payload.type === 'Husvagnplats') price = payload.days * 749;
-      if (payload.type === 'Tältplats') price = payload.days * 499;
+      if (payload.type === 'Stuga') price =  999;
+      if (payload.type === 'Husvagnplats') price =  749;
+      if (payload.type === 'Tältplats') price =  499;
 
       state.cabinCart.push({ ...payload, price: price });
       console.log(state.cabinCart);
