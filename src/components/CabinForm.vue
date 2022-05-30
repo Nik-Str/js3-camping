@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-center pt-5">
     <div class="text">
-      <h2>{{ text }}</h2>
+      <h2>{{ $store.state.cabin.message }}</h2>
     </div>
   </div>
   <v-container>
@@ -15,46 +15,23 @@
         ></v-text-field>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="4" sm="4">
-        <select
-          v-model="selectedDays"
-          class="select mx-3"
-          :class="{ standard: selectedDays === 'Vilken vecka?' }"
-        >
+        <select v-model="selectedWeek" class="select mx-3" :class="{ standard: selectedWeek === 'Vilken vecka?' }">
           <option value="Vilken vecka?">Vilken vecka?</option>
-          <option
-            v-for="(item, index) in days"
-            :key="item + index"
-            :value="item"
-          >
+          <option v-for="(item, index) in weeks" :key="item + index" :value="item">
             {{ item }}
           </option>
         </select>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="6" lg="4" sm="4">
-        <select
-          v-model="selectedCabin"
-          class="select mx-3"
-          :class="{ standard: selectedCabin === 'Välj boende' }"
-        >
+        <select v-model="selectedCabin" class="select mx-3" :class="{ standard: selectedCabin === 'Välj boende' }">
           <option value="Välj boende">Välj boende</option>
-          <option
-            v-for="(item, index) in cabin"
-            :key="item + index"
-            :value="item.value"
-          >
+          <option v-for="(item, index) in cabin" :key="item + index" :value="item.value">
             {{ item.name }}
           </option>
         </select>
       </v-col>
       <v-col class="d-flex justify-center align-center" cols="12">
-        <v-btn
-          type="button"
-          :disabled="valid"
-          @click="bookCabin"
-          class="mt-0 mb-2"
-          elevation="2"
-          rounded
-          width="100px"
+        <v-btn type="button" :disabled="valid" @click="bookCabin" class="mt-0 mb-2" elevation="2" rounded width="100px"
           >Boka</v-btn
         >
       </v-col>
@@ -64,67 +41,46 @@
 
 <script>
 export default {
-  name: "CabinForm",
+  name: 'CabinForm',
   data() {
     return {
       valid: true,
       name: null,
-      selectedDays: "Vilken vecka?",
-      selectedCabin: "Välj boende",
-      text: "Boka ditt boende här nedanför:",
-      days: [15, 16, 17, 18, 19, 20, 21],
+      selectedWeek: 'Vilken vecka?',
+      selectedCabin: 'Välj boende',
+      weeks: [15, 16, 17, 18, 19, 20, 21],
       weeksbooked: [],
       cabin: [
-        { name: "Afterbeach-stugan", value: "Stuga" },
-        { name: "Semester-stugan", value: "Stuga" },
-        { name: "Strand-stugan", value: "Stuga" },
-        { name: "Glass-stugan", value: "Stuga" },
-        { name: "Husvagnplats", value: "Husvagnplats" },
-        { name: "Tältplats", value: "Tältplats" },
+        { name: 'Afterbeach-stugan', value: 'Stuga' },
+        { name: 'Semester-stugan', value: 'Stuga' },
+        { name: 'Strand-stugan', value: 'Stuga' },
+        { name: 'Glass-stugan', value: 'Stuga' },
+        { name: 'Husvagnplats', value: 'Husvagnplats' },
+        { name: 'Tältplats', value: 'Tältplats' },
       ],
-      date: [],
     };
   },
   methods: {
     bookCabin() {
-      //checkar så stugan inte är bokad redan
-      // vägen till arrayen = this.$store.state.cabin.cabinCart
-      const cabinArray = this.$store.state.cabin.cabinCart;
-
-      let str = this.selectedDays.toString();
-
-      if (this.weeksbooked.includes(str)) {
-        this.text = "Tyvärr är stugorna fullbokad den veckan!";
-        this.valid = true;
-      } else {
-
-        this.weeksbooked.push(str)
-        this.text = "Din bokning finns nu i kundvagnen!";
-        this.valid = true;
-        this.$store.commit("addCabinBook", {
-          name: this.name,
-          days: this.selectedDays,
-          type: this.selectedCabin,
-        });
-      }
-
+      this.$store.commit('addCabinBook', {
+        name: this.name,
+        week: this.selectedWeek,
+        type: this.selectedCabin,
+      });
+      this.valid = true;
 
       this.name = null;
-      this.selectedDays = "Vilken vecka?";
-      this.selectedCabin = "Välj boende";
+      this.selectedWeek = 'Vilken vecka?';
+      this.selectedCabin = 'Välj boende';
     },
     validate() {
-      if (
-        this.selectedDays !== "Vilken vecka?" &&
-        this.selectedCabin !== "Välj boende" &&
-        this.name !== null
-      ) {
+      if (this.selectedWeek !== 'Vilken vecka?' && this.selectedCabin !== 'Välj boende' && this.name !== null) {
         this.valid = false;
       }
     },
   },
   watch: {
-    selectedDays() {
+    selectedWeek() {
       this.validate();
     },
     selectedCabin() {
@@ -133,8 +89,6 @@ export default {
     name() {
       this.validate();
     },
-  },
-  mounted() {
   },
 };
 </script>
@@ -155,7 +109,6 @@ export default {
 
 .v-container {
   max-width: 60vw;
-  
 }
 
 @media only screen and (max-width: 960px) {
@@ -168,8 +121,7 @@ export default {
 .select {
   height: 56px;
   width: 100%;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
   text-align: center;
   border-radius: 4px;
   font-weight: 500;

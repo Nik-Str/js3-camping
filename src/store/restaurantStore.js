@@ -2,7 +2,10 @@ import allMenu from './menu';
 
 const store = {
   state: () => ({
-    bookingDate: [{ date: '23/5-2022', time: '11:00', amount: 4, price: 100 }],
+    bookingDate: [
+      { date: '30/5-2022', time: '11:00', amount: 4, price: 100 },
+      { date: '30/5-2022', time: '12:00', amount: 2, price: 100 },
+    ],
     bookingCart: [],
     bookingError: '',
     menu: [],
@@ -93,6 +96,16 @@ const store = {
         total = total + state.bookingCart[i].price;
       }
       return total;
+    },
+    getAmountOfBookedRestaurant(state) {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+      const thisDay = day + '/' + month + '-' + year;
+
+      const booked = state.bookingDate.filter((item) => item.date === thisDay);
+      return booked;
     },
   },
 };

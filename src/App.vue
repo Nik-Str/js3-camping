@@ -26,13 +26,12 @@ export default {
   components: {
     Cart,
     Navbar,
-    Footer
+    Footer,
   },
 };
 </script>
 
 <style lang="scss">
-
 .v-text-field {
   .v-input__details {
     display: none !important;
@@ -46,5 +45,9 @@ export default {
   margin: 1rem;
   z-index: 99;
   height: 3.5rem !important;
+}
+
+.v-navigation-drawer__scrim {
+  background: rgba(0, 0, 0, 0.3) !important;
 }
 </style>
