@@ -8,7 +8,7 @@
         <v-icon size="x-large" color="black">mdi-cart</v-icon>
       </v-btn>
     </v-main>
-    <Footer />
+    <Footer class="mt-8" />
   </v-app>
 </template>
 

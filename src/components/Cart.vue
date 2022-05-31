@@ -56,7 +56,7 @@
       <!-- <v-list-item prepend-icon="mdi-account" title="Spa"></v-list-item> -->
 
       <v-list-item title="Total:" class="mb-4"
-        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal + getCabinTotal + getSpaTotal  }}kr</p>
+        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal + getCabinTotal + getSpaTotal }}kr</p>
       </v-list-item>
     </v-list>
 
@@ -95,6 +95,7 @@ export default {
       if (this.selectedFood !== item) {
         this.selectedFood = item;
         this.selectedCabin = null;
+        this.selectedSpa = null;
       } else {
         this.selectedFood = null;
       }
@@ -107,6 +108,7 @@ export default {
       if (this.selectedCabin !== item) {
         this.selectedCabin = item;
         this.selectedFood = null;
+        this.selectedSpa = null;
       } else {
         this.selectedCabin = null;
       }
@@ -118,6 +120,8 @@ export default {
     handleSelectedSpa(item) {
       if (this.selectedSpa !== item) {
         this.selectedSpa = item;
+        this.selectedFood = null;
+        this.selectedCabin = null;
       } else {
         this.selectedSpa = null;
       }
