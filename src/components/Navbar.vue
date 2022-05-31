@@ -1,13 +1,16 @@
 <template>
   <div class="container">
     <div class="left_container">
+            <router-link class="logo" to="/cabin"><img :src="logo"></router-link>
       <div class="weather">
         <p>Vädret i Stockholm idag: {{ this.weather }}, varmast under dagen: {{ this.maxCelsius }}°C</p>
+        <p>{{ moment(new Date()).format('DD/MM-YY') }}</p>
       </div>
     </div>
     <ul class="links" v-show="showOg">
       <router-link class="li" to="/cabin">Boka stuga</router-link>
-      <router-link class="li" to="/activities">Evenemang</router-link>
+      <router-link class="li" to="/activities">Att göra</router-link>
+      <router-link class="li" to="/event">Evenemang</router-link>
       <router-link class="li" to="/restaurant">Restaurang</router-link>
       <router-link class="li" to="/spa">Spa</router-link>
       <router-link class="li" to="/about">Om oss</router-link>
@@ -21,7 +24,8 @@
       </div>
       <ul class="mobile_links">
         <router-link class="mobile_li" to="/cabin">Boka stuga</router-link>
-        <router-link class="mobile_li" to="/activities">Evenemang</router-link>
+        <router-link class="mobile_li" to="/activities">Att göra</router-link>
+        <router-link class="mobile_li" to="/event">Evenemang</router-link>
         <router-link class="mobile_li" to="/restaurant">Restaurang</router-link>
         <router-link class="mobile_li" to="/spa">Spa</router-link>
         <router-link class="mobile_li" to="/about">Om oss</router-link>
@@ -31,7 +35,9 @@
 </template>
 
 <script>
-import logo from '../assets/sthlm.png';
+import logo from '../assets/logo.png';
+import moment from 'moment';
+
 export default {
   name: 'NavbarView',
   data() {
@@ -43,6 +49,7 @@ export default {
       maxCelsius: '',
       logo,
       width: null,
+      moment,
     };
   },
   //mounted() {
@@ -124,7 +131,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: -100px;
-  padding: 20px;
+  padding: 10px;
   height: 80px;
   position: sticky;
   top: 0;
@@ -133,20 +140,28 @@ export default {
 }
 
 .left_container {
-  margin: 0px 10px;
+  display: flex;
+  height: 60px;
 }
+
 
 .weather {
   padding: 10px;
+  margin: 0px 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+img {
+  height: 50px;
+  width: 50px;
+  }
+
 .links {
   display: flex;
-  padding: 10px;
+  padding: 20px;
   position: relative;
 }
 
@@ -213,4 +228,14 @@ export default {
   top: 0;
   color: white;
 }
+
+.logo {
+  transition: 0.8s ease all;
+  padding: 5px;
+}
+.logo:hover {
+  transform: rotate(45deg) scale(1.1);
+  }
+
+
 </style>

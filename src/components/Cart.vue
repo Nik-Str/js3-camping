@@ -25,14 +25,14 @@
         lines="two"
         prepend-icon="mdi-home"
         v-for="(item, index) in $store.state.cabin.cabinCart"
-        :key="item.date + index"
+        :key="item.week + index"
         :value="{ item }"
         @click="handleSelectedCabin(item)"
         v-bind:class="{ 'bg-black': selectedCabin === item }"
       >
         <v-list-item-header>
-          <v-list-item-title>{{ item.date + ':' + item.days }}</v-list-item-title>
-          <v-list-item-subtitle>{{ item.place }}</v-list-item-subtitle>
+          <v-list-item-title>V.{{ item.week }}</v-list-item-title>
+          <v-list-item-subtitle>{{ item.type }}:{{ item.amount }}</v-list-item-subtitle>
         </v-list-item-header>
         <p class="text-body-2">{{ item.price }}kr</p>
       </v-list-item>
@@ -94,6 +94,7 @@ export default {
     handleSelectedFood(item) {
       if (this.selectedFood !== item) {
         this.selectedFood = item;
+        this.selectedCabin = null;
       } else {
         this.selectedFood = null;
       }
@@ -105,6 +106,7 @@ export default {
     handleSelectedCabin(item) {
       if (this.selectedCabin !== item) {
         this.selectedCabin = item;
+        this.selectedFood = null;
       } else {
         this.selectedCabin = null;
       }

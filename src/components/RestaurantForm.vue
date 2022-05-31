@@ -41,6 +41,7 @@ export default {
     };
   },
   methods: {
+    //Trigger add to cart function in store and reset form input
     handleSubmit() {
       this.$store.commit('addRestaurantBookingCart', {
         date: this.selectedDate,
@@ -51,17 +52,7 @@ export default {
       this.selectedTime = 'Välj tid';
       this.selectedAmount = 'Välj antal';
     },
-    handleSelectedDate(newDate) {
-      this.selectedDate = newDate;
-    },
-    handleSelectedTime(newTime) {
-      this.selectedTime = newTime;
-    },
-    handleSelectedAmount(newAmount) {
-      this.selectedAmount = newAmount;
-      console.log(newAmount);
-      console.log(this.selectedAmount);
-    },
+    //Handles button disabled state
     validate() {
       if (
         this.selectedDate !== 'Välj datum' &&
@@ -73,6 +64,7 @@ export default {
     },
   },
   watch: {
+    //watch for state change on selection input
     selectedDate() {
       this.validate();
     },
@@ -83,6 +75,7 @@ export default {
       this.validate();
     },
   },
+  //Return the comming 14 days dates in state for rendering option values
   mounted() {
     let allDates = [];
     let newMonth = 1;
