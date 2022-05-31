@@ -1,41 +1,28 @@
 const store = {
   state: () => ({
-    Spa: [
-      {
-        title: 'Massage',
-        img: require('../assets/SpaIMG/massage.jpg') ,
-        info: 'Massage för en person'
-      },
-      {
-        title: 'Yoga',
-        img: require('../assets/SpaIMG/massage.jpg'), 
-        info: 'Yoga för en person'
-      },
-      {
-        title: 'Hot-Stone',
-        img: require('../assets/SpaIMG/massage.jpg'), 
-        info: 'Massage med stenar'
-      },
-      {
-        title: 'akupunktur',
-        img: require('../assets/SpaIMG/massage.jpg'), 
-        info: 'Nålar'
-      },
-      {
-        title: 'Hård massage',
-        img: require('../assets/SpaIMG/massage.jpg'),
-        info: 'massage'
-      },
-      {
-        title: 'Kassikt massage',
-        img: require('../assets/SpaIMG/massage.jpg'),
-        info: 'massage'
-      }
-    ],
+    Spa: [],
+    SpaBooked: [],
+    SpaCart: [],
   }),
-  mutations: {},
+  mutations: {
+    addSpaBook(state, item) {
+      state.SpaCart.push({ ...item, price: 999 });
+      console.log(state.SpaCart);
+    },
+    removeSpaBookingCart(state, payload) {
+      state.SpaCart = state.SpaCart.filter((item) => item !== payload);
+    },
+  },
   actions: {},
-  getters: {},
+  getters: {
+    getSpaTotal(state) {
+      let total = 0;
+      for (let i = 0; i < state.SpaCart.length; i++) {
+        total = total + state.SpaCart[i].price;
+      }
+      return total;
+    },
+  },
 };
 
 export default store;

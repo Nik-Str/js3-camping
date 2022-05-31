@@ -37,10 +37,26 @@
         <p class="text-body-2">{{ item.price }}kr</p>
       </v-list-item>
 
+      <v-list-item
+        lines="two"
+        prepend-icon="mdi-account"
+        v-for="(item, index) in $store.state.spa.SpaCart"
+        :key="item.date + index"
+        :value="{ item }"
+        @click="handleSelectedSpa(item)"
+        v-bind:class="{ 'bg-black': selectedSpa === item }"
+      >
+        <v-list-item-header>
+          <v-list-item-title>{{ item.date + ':' + item.days }}</v-list-item-title>
+          <v-list-item-subtitle>{{ item.place }}</v-list-item-subtitle>
+        </v-list-item-header>
+        <p class="text-body-2">{{ item.price }}kr</p>
+      </v-list-item>
+
       <!-- <v-list-item prepend-icon="mdi-account" title="Spa"></v-list-item> -->
 
       <v-list-item title="Total:" class="mb-4"
-        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal + getCabinTotal }}kr</p>
+        ><p class="text-body-2 text-decoration-underline">{{ getRestaurantTotal + getCabinTotal + getSpaTotal  }}kr</p>
       </v-list-item>
     </v-list>
 
@@ -49,6 +65,9 @@
         >mdi-delete</v-icon
       >
       <v-icon v-if="selectedCabin" large color="black" class="mb-4 deleteIcon" @click="handleRemoveCabin"
+        >mdi-delete</v-icon
+      >
+      <v-icon v-if="selectedSpa" large color="black" class="mb-4 deleteIcon" @click="handleRemoveSpa"
         >mdi-delete</v-icon
       >
       <div>
@@ -67,6 +86,7 @@ export default {
     return {
       selectedFood: null,
       selectedCabin: null,
+      selectedSpa: null,
     };
   },
   props: ['display'],
@@ -95,9 +115,20 @@ export default {
       this.$store.commit('removeCabinBookingCart', this.selectedCabin);
       this.selectedCabin = null;
     },
+    handleSelectedSpa(item) {
+      if (this.selectedSpa !== item) {
+        this.selectedSpa = item;
+      } else {
+        this.selectedSpa = null;
+      }
+    },
+    handleRemoveSpa() {
+      this.$store.commit('removeSpaBookingCart', this.selectedSpa);
+      this.selectedSpa = null;
+    },
   },
   computed: {
-    ...mapGetters(['getRestaurantTotal', 'getCabinTotal']),
+    ...mapGetters(['getRestaurantTotal', 'getCabinTotal', 'getSpaTotal']),
   },
 };
 </script>
