@@ -102,8 +102,18 @@ const store = {
     },
     getAmountOfBookedCabin(state) {
       const booked = state.cabinBooked.filter((item) => item.week === 16 && item.type === 'Stuga');
-      console.log(booked);
-      return booked[0].amount;
+      const amount = booked[0]?.amount ? booked[0].amount : 0;
+      return 5 - amount;
+    },
+    getAmountOfBookedTent(state) {
+      const booked = state.cabinBooked.filter((item) => item.week === 16 && item.type === 'Tältplats');
+      const amount = booked[0]?.amount ? booked[0].amount : 0;
+      return 10 - amount;
+    },
+    getAmountOfBookedCaravan(state) {
+      const booked = state.cabinBooked.filter((item) => item.week === 16 && item.type === 'Husvagnplats');
+      const amount = booked[0]?.amount ? booked[0].amount : 0;
+      return 20 - amount;
     },
   },
 };

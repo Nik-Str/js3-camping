@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="left_container">
-            <router-link class="logo" to="/cabin"><img :src="logo"></router-link>
+      <router-link class="logo" to="/"><img :src="logo" /></router-link>
       <div class="weather">
         <p>Vädret i Stockholm idag: {{ this.weather }}, varmast under dagen: {{ this.maxCelsius }}°C</p>
         <p>{{ moment(new Date()).format('DD/MM-YY') }}</p>
@@ -144,7 +144,6 @@ export default {
   height: 60px;
 }
 
-
 .weather {
   padding: 10px;
   margin: 0px 20px;
@@ -157,7 +156,7 @@ export default {
 img {
   height: 50px;
   width: 50px;
-  }
+}
 
 .links {
   display: flex;
@@ -235,7 +234,5 @@ img {
 }
 .logo:hover {
   transform: rotate(45deg) scale(1.1);
-  }
-
-
+}
 </style>
