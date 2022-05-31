@@ -37,7 +37,6 @@
         <p class="text-body-2">{{ item.price }}kr</p>
       </v-list-item>
 
-<!-- Spa -->
       <v-list-item
         lines="two"
         prepend-icon="mdi-account"
