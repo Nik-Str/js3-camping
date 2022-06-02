@@ -56,7 +56,7 @@ export default {
         },
         {
           title: 'Utomhus bastu',
-          sub: 'Ta ett dopp och värm upp dig i en ab våra utomhus bastu',
+          sub: 'Ta ett dopp och värm upp dig i en av våra utomhus bastu',
           img: require('@/assets/SpaIMG/Bastu.jpg'),
           price: '799'
         },
