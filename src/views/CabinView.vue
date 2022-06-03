@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="text">
-      <h1 class="text-h3 font-weight-bold">NORRLANDS PÄRLA</h1>
+      <h1 class="text-h3 font-weight-bold">STOCKHOLMS PÄRLA</h1>
       <h3 class="text-h6 font-weight-bold font-italic">Drop in säsongsplatser & stugor öppet året runt</h3>
     </div>
     <CabinForm />

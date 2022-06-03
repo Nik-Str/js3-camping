@@ -14,7 +14,10 @@
           <v-col class="d-flex justify-center align-center" cols="12" md="4">
             <div>
               <p class="font-weight-bold text-center">Boende</p>
-              <p>Stugor Lediga V.16: {{ 5 - getAmountOfBookedCabin }}st</p>
+              <p>Lediga boendeformer V.16</p>
+              <p>Stugor: {{ getAmountOfBookedCabin }}st</p>
+              <p>Tältplatser: {{ getAmountOfBookedTent }}st</p>
+              <p>Husvagnplatser: {{ getAmountOfBookedCaravan }}st</p>
             </div>
           </v-col>
           <v-col class="d-flex justify-center align-center" cols="12" md="4">
@@ -31,7 +34,9 @@
           <v-col class="d-flex justify-center align-center" cols="12" md="4">
             <div>
               <p class="font-weight-bold text-center">Spa</p>
-              <p>Spa bokade V.16: {{ getAmountOfBookedCabin }}</p>
+              <p>Leda platser på klasser idag</p>
+              <p>Yoga: {{ getAmountOfBookedYoga }}</p>
+              <p>Utomhus Yoga: {{ getAmountOfBookedYogaOutdoor }}</p>
             </div>
           </v-col>
         </v-row>
@@ -52,7 +57,14 @@ export default {
     icons: ['mdi-facebook', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram'],
   }),
   computed: {
-    ...mapGetters(['getAmountOfBookedCabin', 'getAmountOfBookedRestaurant']),
+    ...mapGetters([
+      'getAmountOfBookedCabin',
+      'getAmountOfBookedTent',
+      'getAmountOfBookedCaravan',
+      'getAmountOfBookedRestaurant',
+      'getAmountOfBookedYoga',
+      'getAmountOfBookedYogaOutdoor',
+    ]),
   },
 };
 </script>
