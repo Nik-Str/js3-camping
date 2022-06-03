@@ -46,7 +46,6 @@ const store = {
             }
             addSuccess();
           } else {
-            //Type är fullbokad på angivet datum
             addError();
           }
         }
@@ -61,7 +60,6 @@ const store = {
             }
             addSuccess();
           } else {
-            //Type är fullbokad på angivet datum
             addError();
           }
         }
@@ -76,7 +74,6 @@ const store = {
             }
             addSuccess();
           } else {
-            //Type är fullbokad på angivet datum
             addError();
           }
         }

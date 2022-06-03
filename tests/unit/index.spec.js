@@ -2,9 +2,9 @@ import Store from '../../src/store';
 
 const store = Store;
 
-const example1 = { date: '23/5-2022', time: '11:00', amount: 4, price: 100 };
-const example2 = { date: '24/5-2022', time: '11:00', amount: 4, price: 100 };
-const example3 = { date: '24/5-2022', time: '12:00', amount: 4, price: 100 };
+const example1 = { date: '3/6-2022', time: '11:00', amount: 4, price: 100 };
+const example2 = { date: '4/5-2022', time: '11:00', amount: 4, price: 100 };
+const example3 = { date: '4/5-2022', time: '12:00', amount: 4, price: 100 };
 
 describe('test mutation for booking restaurant', () => {
   //Add to cart
@@ -68,9 +68,8 @@ describe('test validate if booking amount has reach limit', () => {
     store.commit('removeRestaurantBookingCart', example2);
     store.commit('addRestaurantBookingCart', example1);
     expect(store.state.restaurant.bookingCart).toEqual([{ ...example1, amount: 8 }]);
-    expect(store.state.restaurant.bookingDate).toEqual([example1]);
-    expect(store.state.restaurant.bookingError).toEqual('23/5-2022 kl. 11:00 är restaurangen fullbokad.');
+    store.commit('addRestaurantBookingCart', example1);
+    expect(store.state.restaurant.bookingError).toEqual('3/6-2022 kl. 11:00 är restaurangen fullbokad.');
   });
 });
-
 //npm run test:unit

@@ -4,7 +4,6 @@
       <div>
         <h1 class="text-h3 font-weight-bold">SPA OCH MASSAGE</h1>
         <h3 class="text-h6 font-weight-bold font-italic">Massage, yoga, bad och bastu</h3>
-        
       </div>
     </div>
     <SpaForm />
@@ -20,53 +19,53 @@ import spacard from '../components/spacard.vue';
 import SpaForm from '@/components/SpaForm.vue';
 
 export default {
-  name: 'spa',
+  name: 'SpaView',
+  components: {
+    spacard,
+    SpaForm,
+  },
   data() {
     return {
       spa: [
-        { 
+        {
           title: 'Massage',
           sub: 'Välj mellan klassik och hård massage',
           img: require('@/assets/SpaIMG/massage.jpg'),
-          price: '499'
-          },          
+          price: '499',
+        },
         {
           title: 'Yoga',
           sub: 'Allt från utegym, joggingspår, paddel, mm',
           img: require('@/assets/SpaIMG/Yoga1.jpg'),
-          price: '299'
+          price: '299',
         },
         {
           title: 'Hot-stone',
           sub: 'Avslappning med naturlig varma stenar',
           img: require('@/assets/SpaIMG/Hotstone.jpg'),
-          price: '399'
+          price: '399',
         },
         {
           title: 'Grupp Yoga utomhus',
           sub: 'Yoga i grupp för hela familjen',
           img: require('@/assets/SpaIMG/GruppYoga.jpg'),
-          price: '299'
+          price: '299',
         },
         {
           title: 'Spa, bad och bastu',
           sub: 'Slappna av själv, din kära eller hela familj med pool, spa och bastu',
           img: require('@/assets/SpaIMG/SpaBad.jpg'),
-          price: '899'
+          price: '899',
         },
         {
           title: 'Utomhus bastu',
           sub: 'Ta ett dopp och värm upp dig i en av våra utomhus bastu',
           img: require('@/assets/SpaIMG/Bastu.jpg'),
-          price: '799'
+          price: '799',
         },
       ],
     };
   },
-  components: {
-    spacard,
-    SpaForm
-},
 };
 </script>
 
@@ -74,8 +73,7 @@ export default {
 .backgroundImg {
   background-image: url('../assets/spa-background.jpg');
 
-
-   width: 100%;
+  width: 100%;
   margin-top: 20px;
   height: 600px;
   background-position: center;

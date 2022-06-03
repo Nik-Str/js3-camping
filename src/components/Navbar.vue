@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="left_container">
-
       <router-link class="logo" to="/"><img :src="logo" /></router-link>
 
       <div class="weather">
@@ -54,10 +53,9 @@ export default {
       moment,
     };
   },
-  //mounted() {
-  //this.fetchWeather();
-  //},
-
+  mounted() {
+    this.fetchWeather();
+  },
   created() {
     window.addEventListener('resize', this.resizeNav);
     this.resizeNav();
@@ -78,8 +76,6 @@ export default {
         .then((data) => {
           let weather = data.forecasts[0].text;
           this.maxCelsius = data.forecasts[0].high;
-
-          //console.log(this.weather);
 
           if (weather.includes('Partly Cloudy')) {
             this.weather = 'Delvis molnigt';

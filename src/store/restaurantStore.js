@@ -3,8 +3,8 @@ import allMenu from './menu';
 const store = {
   state: () => ({
     bookingDate: [
-      { date: '31/5-2022', time: '11:00', amount: 4, price: 100 },
-      { date: '31/5-2022', time: '12:00', amount: 2, price: 100 },
+      { date: '3/6-2022', time: '11:00', amount: 4, price: 100 },
+      { date: '3/6-2022', time: '12:00', amount: 2, price: 100 },
     ],
     bookingCart: [],
     bookingError: '',

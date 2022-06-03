@@ -48,7 +48,7 @@ export default {
       selectedDays: 'Välj Tid',
       selectedSpa: 'Välj tjänst',
       text: 'Boka här!',
-      days: ["11:00","13:00", "15:00", "17:00", "19:00"],
+      days: ['11:00', '13:00', '15:00', '17:00', '19:00'],
       Spa: ['Massage', 'Yoga', 'Hot-Stone', 'Grupp Yoga utomhus', 'Spa, bad och bastu', 'Utomhus bastu'],
       date: [],
     };

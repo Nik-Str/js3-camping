@@ -19,7 +19,6 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView,
-
   },
   {
     path: '/activities',
@@ -56,11 +55,11 @@ const routes = [
     name: 'spa',
     component: SpaView,
   },
-{
-  path: '/cabin',
-  name: 'cabin',
-  component: CabinView,
-},
+  {
+    path: '/cabin',
+    name: 'cabin',
+    component: CabinView,
+  },
 ];
 
 const router = createRouter({

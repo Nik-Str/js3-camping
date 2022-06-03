@@ -2,15 +2,14 @@ const store = {
   state: () => ({
     Spa: [],
     SpaBooked: [
-      { date: '31/5-2022', days: '10.00', place: 'Yoga', amount: 6 },
-      { date: '31/5-2022', days: '17.00', place: 'Grupp Yoga utomhus', amount: 17 },
+      { date: '3/6-2022', days: '10.00', place: 'Yoga', amount: 6 },
+      { date: '3/6-2022', days: '17.00', place: 'Grupp Yoga utomhus', amount: 17 },
     ],
     SpaCart: [],
   }),
   mutations: {
     addSpaBook(state, item) {
       state.SpaCart.push({ ...item, price: 999 });
-      console.log(state.SpaCart);
     },
     removeSpaBookingCart(state, payload) {
       state.SpaCart = state.SpaCart.filter((item) => item !== payload);

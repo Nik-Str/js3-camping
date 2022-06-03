@@ -6,7 +6,6 @@
         <h3 class="text-h6 font-weight-bold font-italic">Större event och upplevelser</h3>
       </div>
     </div>
-    <SpaForm />
   </div>
 
   <thead>
@@ -15,16 +14,19 @@
       <th class="text-left"></th>
     </tr>
   </thead>
-<v-container fluid>
-
-  <tbody>
-    <tr v-for="item in Event" :key="item.name">
-      <td><h2>{{ item.name }}</h2></td>
-      <td><h2>Datum {{ item.date }}</h2></td>
-      <td>{{ item.description }}</td>
-    </tr>
-  </tbody>
-    </v-container>
+  <v-container fluid>
+    <tbody>
+      <tr v-for="item in Event" :key="item.name">
+        <td>
+          <h2>{{ item.name }}</h2>
+        </td>
+        <td>
+          <h2>Datum {{ item.date }}</h2>
+        </td>
+        <td>{{ item.description }}</td>
+      </tr>
+    </tbody>
+  </v-container>
 </template>
 
 <script>
@@ -111,7 +113,7 @@ tr {
   background-position: center;
   background-size: cover;
   font-size: 1.3rem;
-  display: block ;
+  display: block;
   flex-direction: Block;
   align-items: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
